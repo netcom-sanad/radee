@@ -22,8 +22,11 @@
 *Developed with 🔒 for safer banking systems.*
 
 
----
-## 🎨 واجهات وتصميم المستخدم (UI/UX)
+---## 🎨 واجهات وتصميم المستخدم (UI/UX Design)
 
-للاطلاع على التصميم التفاعلي لشاشات الجوال وقفل الهوية البصرية:
-* **رابط المشروع على Figma:** [اضغط هنا لمعاينة واجهات التطبيق](https://www.figma.com/make/z6yPRhETDZAeQ7oEMkVWKu/Banking-App-UI-Kit?fullscreen=1&t=VMDARkGHkwzfPCqt-1&code-node-id=0-9)
+تم تصميم الهوية البصرية وشاشات القفل التفاعلية للمنظومة بناءً على أعلى معايير تجربة المستخدم لضمان سهولة الاستجابة والتعامل مع التنبيهات الأمنية.
+
+* **رابط النموذج التفاعلي المباشر (Figma):** [اضغط هنا لمعاينة شاشة القفل التفاعلية مباشرة](https://www.figma.com/make/z6yPRhETDZAeQ7oEMkVWKu/Banking-App-UI-Kit?fullscreen=1&t=VMDARkGHkwzfPCqt-1&preview-route=%2Flockscreen&code-node-id=0-9)
+
+### 📱 لقطة من واجهة النظام:
+> 💡 **ملاحظة للمحكمين:** يرجى الضغط على الرابط أعلاه لتجربة شاشة القفل بشكل حي وتفاعلي بالكامل.
