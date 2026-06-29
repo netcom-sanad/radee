@@ -20,3 +20,10 @@
 
 ---
 *Developed with 🔒 for safer banking systems.*
+
+
+---
+## 🎨 واجهات وتصميم المستخدم (UI/UX)
+
+للاطلاع على التصميم التفاعلي لشاشات الجوال وقفل الهوية البصرية:
+* **رابط المشروع على Figma:** [اضغط هنا لمعاينة واجهات التطبيق](https://www.figma.com/make/z6yPRhETDZAeQ7oEMkVWKu/Banking-App-UI-Kit?fullscreen=1&t=VMDARkGHkwzfPCqt-1&code-node-id=0-9)
