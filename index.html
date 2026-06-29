@@ -3,150 +3,720 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منظومة رادع الأمنية | Radae Security Solution</title>
+    <title>منظومة رادع الأمنية | تقرير المعمارية التقنية وتجربة العميل</title>
+    <!-- استدعاء خطوط تقنية محترفة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #151c2c;
-            --accent-red: #ff3333;
-            --accent-blue: #00d2ff;
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
-        }
-        
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --bg-main: #0B0F19;
+            --bg-card: #151B2C;
+            --accent: #38BDF8;
+            --accent-danger: #F87171;
+            --accent-sos: #EC4899; 
+            --text-primary: #F3F4F6;
+            --text-secondary: #9CA3AF;
+            --border: #242F47;
+            --font-ar: 'IBM Plex Sans Arabic', sans-serif;
+            --font-en: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Navbar */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font-ar);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* القائمة العلوية التقنية */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
-            background-color: rgba(11, 15, 25, 0.8);
-            backdrop-filter: blur(10px);
+            padding: 1.5rem 8%;
+            border-bottom: 1px solid var(--border);
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid #1e293b;
         }
-        .logo { font-size: 24px; font-weight: bold; color: var(--text-main); }
-        .logo span { color: var(--accent-red); }
-        .nav-links a { color: var(--text-muted); text-decoration: none; margin-left: 20px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent-blue); }
-        .btn-demo { background-color: var(--accent-blue); color: #000; padding: 10px 20px; border-radius: 8px; font-weight: bold; text-decoration: none; }
 
-        /* Hero Section */
-        .hero {
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 60px 8%;
-            min-height: 70vh;
+            gap: 0.5rem;
         }
-        .hero-text { flex: 1; max-width: 55%; }
-        .hero-text h1 { font-size: 42px; line-height: 1.3; margin-bottom: 20px; }
-        .hero-text p { color: var(--text-muted); font-size: 18px; line-height: 1.6; margin-bottom: 30px; }
-        .hero-image { flex: 1; display: flex; justify-content: center; position: relative; }
-        .hero-image img { max-width: 320px; border-radius: 30px; box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); border: 4px solid #1e293b; }
 
-        /* Metrics */
-        .metrics {
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
             display: flex;
-            justify-content: space-around;
-            background-color: var(--card-bg);
-            padding: 40px 8%;
-            margin: 40px 0;
-            border-top: 1px solid #1e293b;
-            border-bottom: 1px solid #1e293b;
+            gap: 2rem;
+            list-style: none;
         }
-        .metric-card { text-align: center; }
-        .metric-card h3 { font-size: 48px; color: var(--accent-blue); margin: 0; }
-        .metric-card p { color: var(--text-muted); margin-top: 10px; }
 
-        /* Tech Section */
-        .tech-section { padding: 60px 8%; text-align: center; }
-        .tech-grid { display: flex; justify-content: space-between; margin-top: 40px; gap: 20px; }
-        .tech-card { background-color: var(--card-bg); padding: 30px; border-radius: 12px; flex: 1; text-align: right; border: 1px solid #1e293b; }
-        .tech-card h4 { font-size: 20px; color: var(--text-main); margin-bottom: 15px; }
-        .tech-card p { color: var(--text-muted); line-height: 1.5; font-size: 15px; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
 
-        /* Footer */
-        footer { text-align: center; padding: 40px; color: var(--text-muted); border-top: 1px solid #1e293b; }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* الحاويات الرئيسية للمحتوى المتنقل */
+        .tab-content {
+            display: none;
+            padding: 3rem 8%;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* واجهة الـ Hero التعريفية */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 75vh;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-desc {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-specs {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .spec-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .spec-item strong {
+            color: var(--accent);
+            display: block;
+            font-size: 1.2rem;
+            font-family: var(--font-en);
+        }
+
+        /* تأثير الرادار السيبراني حول الصورة */
+        .mockup-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mockup-container::before {
+            content: '';
+            position: absolute;
+            width: 106%;
+            height: 106%;
+            border: 2px solid rgba(56, 189, 248, 0.3);
+            border-radius: 24px;
+            animation: radarPulse 2s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes radarPulse {
+            0% { transform: scale(0.96); opacity: 1; }
+            100% { transform: scale(1.06); opacity: 0; }
+        }
+
+        .mockup-container img {
+            position: relative;
+            z-index: 1;
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--border);
+        }
+
+        /* واجهة لوحة تحكم البنك */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: var(--font-en);
+        }
+
+        .card-value.danger { color: var(--accent-danger); }
+        .card-value.success { color: #34D399; }
+        .card-value.sos-color { color: var(--accent-sos); }
+
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .log-table th, .log-table td {
+            padding: 1rem;
+            text-align: right;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .log-table th {
+            background: rgba(21, 27, 44, 0.6);
+            color: var(--text-secondary);
+        }
+
+        /* تحريك الصفوف الجديدة المضافة حياً */
+        .new-row {
+            animation: highlightNewRow 1.5s ease-out forwards;
+        }
+
+        @keyframes highlightNewRow {
+            0% { background: rgba(56, 189, 248, 0.25); opacity: 0; transform: translateY(-10px); }
+            100% { background: transparent; opacity: 1; transform: translateY(0); }
+        }
+
+        .status-pill {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-pill.pending { 
+            background: rgba(251, 191, 36, 0.1); 
+            color: #FBBF24; 
+            animation: blink 1.5s infinite ease-in-out;
+        }
+
+        .status-pill.sos-active {
+            background: rgba(236, 72, 153, 0.15);
+            color: var(--accent-sos);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            animation: blink 0.8s infinite ease-in-out; 
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .status-pill.blocked { background: rgba(248, 113, 113, 0.1); color: var(--accent-danger); }
+        
+        /* وسوم حالة زوال الخطر */
+        .mitigation-text {
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .mitigation-text.active-safe {
+            color: #34D399;
+            animation: securePulse 1s ease-out;
+        }
+        .mitigation-text.sos-resolved {
+            color: #38BDF8;
+            font-weight: bold;
+            animation: securePulse 1s ease-out;
+        }
+        .mitigation-text.auto-safe {
+            color: #A9DC76;
+        }
+        .mitigation-text.waiting {
+            color: #A3AED0;
+            font-style: italic;
+        }
+        .mitigation-text.sos-hunting {
+            color: var(--accent-sos);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes securePulse {
+            0% { transform: scale(1.05); text-shadow: 0 0 10px rgba(52, 211, 153, 0.5); }
+            100% { transform: scale(1); text-shadow: none; }
+        }
+
+        /* الـ Terminal لـ واجهة الـ API */
+        .api-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .terminal-window {
+            background: #011627;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #0b101f;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot.r { background: #FF5F56; }
+        .dot.y { background: #FFBD2E; }
+        .dot.g { background: #27C93F; }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-family: var(--font-en);
+        }
+
+        .copy-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .code-box {
+            padding: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            direction: ltr;
+            text-align: left;
+            overflow-x: auto;
+            color: #A9DC76;
+        }
+
+        .code-keyword { color: #FF6188; }
+        .code-string { color: #ffd866; }
+
+        .doc-text h3 { margin: 1.5rem 0 0.5rem 0; color: var(--accent); }
+        .doc-text ul { margin-right: 1.5rem; color: var(--text-secondary); }
+
+        /* قسم تعريف فريق العمل الجديد */
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.08);
+        }
+
+        .avatar-placeholder {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            border: 2px solid var(--border);
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .team-card:hover .avatar-placeholder {
+            border-color: var(--accent);
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .member-role {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .member-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- القائمة العلوية -->
     <nav>
-        <div class="logo">رادع<span>.</span></div>
-        <div class="nav-links">
-            <a href="#how-it-works">كيف يعمل</a>
-            <a href="#architecture">المعمارية التقنية</a>
-            <a href="#metrics">لغة الأرقام</a>
-        </div>
-        <a href="#" class="btn-demo">طلب نسخة تجريبية</a>
+        <div class="logo">🛡️ رادع <span>.Radae</span></div>
+        <ul class="nav-links">
+            <li><a onclick="switchTab('overview')" id="tab-overview" class="active">نظرة عامة عن المنظومة</a></li>
+            <li><a onclick="switchTab('bank-dashboard')" id="tab-bank-dashboard">محاكاة واجهة البنك (SOC)</a></li>
+            <li><a onclick="switchTab('api-docs')" id="tab-api-docs">توثيق المطورين (API)</a></li>
+            <li><a onclick="switchTab('team-info')" id="tab-team-info">فريق العمل</a></li>
+        </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>تجميد الاحتيال المصرفي الفوري.. من شاشة القفل مباشرة عبر "رادع".</h1>
-            <p>منظومة "رادع" هي حزمة ربط أمنية ذكية (B2B Cybersecurity API Plugin) يتم دمجها داخل تطبيقات البنوك الحالية، لتُشرك العميل في منظومة الحماية الفورية وتُقلص وقت الاستجابة (MTTR) إلى أقل من ثانية واحدة.</p>
-            <a href="#" class="btn-demo" style="background-color: var(--accent-red); color: white; padding: 15px 30px; font-size: 18px;">احجز عرضاً تقنياً للبنوك</a>
+    <!-- الصفحة الأولى: نظرة عامة -->
+    <div id="overview" class="tab-content active">
+        <div class="hero-section">
+            <div>
+                <div class="badge">تقرير هندسي | نظام استجابة فوري ثنائي المنظومة</div>
+                <h1 class="hero-title">تقليص زمن الاستجابة للاحتيال المالي من دقائق إلى أجزاء من الثانية.</h1>
+                <p class="hero-desc">
+                    تعمل منظومة "رادع" كحزمة ربط برمجية (API Plugin) يتم دمجها مع الأنظمة الأمنية الحالية للبنوك (IPS/Firewalls). ينصب تركيزنا بالكامل على **تجربة العميل الاستباقية**، حيث يتم تمرير صلاحية اتخاذ القرار الأمني المباشر لجوال العميل فور رصد السلوك الاحتيالي المشبوه.
+                </p>
+                <div class="tech-specs">
+                    <div class="spec-item">
+                        <strong>&lt; 1s</strong>
+                        معدل الاستجابة المستهدف (MTTR)
+                    </div>
+                    <div class="spec-item">
+                        <strong>Zero-Friction</strong>
+                        تجربة عميل بدون تعقيد
+                    </div>
+                </div>
+            </div>
+            <div class="mockup-container">
+                <img src="lockscreen.png" alt="شاشة القفل التفاعلية لنظام رادع" id="lockscreen-img">
+            </div>
         </div>
-        <div class="hero-image">
-            <!-- هنا يتم ربط شاشتك من فيجما -->
-            <img src="lockscreen.png" alt="شاشة القفل التفاعلية لنظام رادع">
-        </div>
-    </section>
+    </div>
 
-    <!-- Metrics Section -->
-    <section class="metrics" id="metrics">
-        <div class="metric-card">
-            <h3>+90%</h3>
-            <p>من الخسائر تقع بسبب تأخر ردة الفعل</p>
-        </div>
-        <div class="metric-card">
-            <h3>5 دقائق</h3>
-            <p>متوسط وقت حظر البطاقات التقليدي</p>
-        </div>
-        <div class="metric-card">
-            <h3>&lt; 1 ثانية</h3>
-            <p>وقت الاستجابة للحظر الفوري عبر رادع</p>
-        </div>
-    </section>
-
-    <!-- Tech Architecture Section -->
-    <section class="tech-section" id="architecture">
-        <h2>بنية أمنية متكاملة متوافقة مع الأنظمة المصرفية</h2>
-        <p style="color: var(--text-muted);">نظام مدمج يعمل خفيف الوزن خلف الكواليس دون أي تأخير في معالجة طلبات الـ API.</p>
+    <!-- الصفحة الثانية: واجهة البنك -->
+    <div id="bank-dashboard" class="tab-content">
+        <div class="badge">بيئة محاكاة الأمن السيبراني للبنك</div>
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">مركز مراقبة الأنشطة الشبكية والمصرفية (SOC)</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">تراقب هذه اللوحة التهديدات الاستباقية وحالات الاستغاثة الطارئة (SOS) التي يرفعها العملاء المتضررون حياً لمعالجتها فورياً.</p>
         
-        <div class="tech-grid">
-            <div class="tech-card">
-                <h4>1. الرصد الذكي (IPS Gateway)</h4>
-                <p>يحلل جدار حماية البنك والذكاء الاصطناعي السلوكي الحركات الشبكية المريبة ويمررها عبر الـ API الخاص بنا فوراً.</p>
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-title">إجمالي المحاولات المرصودة اليوم</div>
+                <div class="card-value" id="total-alerts-counter">1,493</div>
             </div>
-            <div class="tech-card">
-                <h4>2. التنبيه التفاعلي المستهدف</h4>
-                <p>يستقبل جوال العميل Payload مشفر لفتح واجهة شاشة القفل التفاعلية، مما يعطيه سلطة القرار الفوري بيمينه.</p>
+            <div class="card">
+                <div class="card-title">عمليات تم تجميدها وتأمينها</div>
+                <div class="card-value success" id="frozen-alerts-counter">34</div>
             </div>
-            <div class="tech-card">
-                <h4>3. بروتوكول الـ SOS والتعافي</h4>
-                <p>في حال السرقة المادية، يوفر نظام رادع زر SOS موحد داخل التطبيق البنكي لتجميد كافة القنوات بضغطة زر واحدة.</p>
+            <div class="card">
+                <div class="card-title">نداءات استغاثة طارئة (SOS) تمت معالجتها</div>
+                <div class="card-value sos-color" id="sos-alerts-counter">3</div>
             </div>
         </div>
-    </section>
 
-    <footer>
-        <p>© 2026 منظومة رادع الأمنية - نحو شبكة مصرفية خالية من الاحتيال الفوري.</p>
-    </footer>
+        <table class="log-table">
+            <thead>
+                <tr>
+                    <th>معرّف العملية</th>
+                    <th>نوع التهديد المكتشف</th>
+                    <th>عنوان IP المصدر</th>
+                    <th>مستوى الخطورة</th>
+                    <th>حالة قرار العميل</th>
+                    <th>إجراء الإخلاء / زوال الخطر</th>
+                </tr>
+            </thead>
+            <tbody id="log-table-body">
+                <tr>
+                    <td style="font-family: var(--font-en);">#TX-9081</td>
+                    <td>محاولة سحب من موقع مجهول (Behavioral AI Bypass)</td>
+                    <td style="font-family: var(--font-en);">192.168.43.12</td>
+                    <td style="color: var(--accent-danger); font-weight: 600;">حرجة جداً</td>
+                    <td><span class="status-pill pending">بانتظار سحبة العميل على شاشة القفل</span></td>
+                    <td><span class="mitigation-text waiting" id="mitigate-9081">جاري الانتظار...</span></td>
+                </tr>
+                <tr>
+                    <td style="font-family: var(--font-en);">#TX-9080</td>
+                    <td>نداء استغاثة طارئ (SOS: تم اختراق الحساب وسحب مبلغ)</td>
+                    <td style="font-family: var(--font-en);">185.220.101.9</td>
+                    <td style="color: var(--accent-sos); font-weight: 700;">حالة استغاثة طارئة</td>
+                    <td><span class="status-pill sos-active">تفعيل استغاثة SOS من جوال العميل</span></td>
+                    <td><span class="mitigation-text sos-resolved">تم استرداد الأموال وتجميد IP المحتال ⚖️</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
+    <!-- الصفحة الثالثة: توثيق الـ API -->
+    <div id="api-docs" class="tab-content">
+        <div class="badge">Technical API Reference</div>
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">بروتوكول تفعيل تنبيه شاشة القفل التفاعلية</h2>
+        
+        <div class="api-container">
+            <div class="doc-text">
+                <h3>طريقة الربط وآلية تدفق البيانات</h3>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">بمجرد استشعار البنك لخطورة معينة، يرسل خادم البنك طلب POST مشفر يحتوي على معطيات العملية إلى سيرفر "رادع" لتنبيه تطبيق العميل على شاشة القفل فوراً دون أي تأخير شبكي.</p>
+                
+                <h3>المعطيات المطلوبة (Payload Properties):</h3>
+                <ul style="margin-top: 0.5rem; line-height: 2;">
+                    <li><strong style="color: var(--text-primary);">user_id:</strong> المعرف الفريد للعميل المستهدف.</li>
+                    <li><strong style="color: var(--text-primary);">fraud_score:</strong> نسبة احتمالية التزوير المحتسبة من خوارزميات البنك.</li>
+                    <li><strong style="color: var(--text-primary);">transaction_amount:</strong> قيمة العملية المشبوهة لإبرازها على شاشة القفل.</li>
+                </ul>
+            </div>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="dot r"></div>
+                        <div class="dot y"></div>
+                        <div class="dot g"></div>
+                    </div>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <div class="code-box" id="api-code">
+<span class="code-keyword">import</span> requests
+
+payload = {
+    <span class="code-string">"user_id"</span>: <span class="code-string">"usr_sanad_2026"</span>,
+    <span class="code-string">"fraud_score"</span>: <span class="code-string">0.94</span>,
+    <span class="code-string">"transaction_amount"</span>: <span class="code-string">"4,500 SAR"</span>,
+    <span class="code-string">"action_trigger"</span>: <span class="code-string">"lockscreen_interactive_popup"</span>
+}
+
+response = requests.post(<span class="code-string">"https://api.radae.internal/v1/alert"</span>, json=payload)
+print(response.status_code)
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- الصفحة الرابعة: تعريف الفريق (فريق رادع) -->
+    <div id="team-info" class="tab-content">
+        <div class="badge">الفريق القائم على تطوير المنظومة</div>
+        <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">فريق رادع | Team Radae</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 3rem;">نخبة من مهندسي الشبكات والاتصالات يسخرون التقنيات الحديثة لابتكار حلول سيبرانية استباقية لحماية القطاع المصرفي.</p>
+
+        <div class="team-container">
+            <!-- العضو الأول: سند -->
+            <div class="team-card">
+                <div class="avatar-placeholder">💻</div>
+                <div class="member-name">سند محمد السنيدي</div>
+                <div class="member-role">مهندس شبكات واتصالات / مطور المنظومة</div>
+                <div class="member-desc">مسؤول عن بناء المعمارية البرمجية للمنظومة، وتصميم آلية ربط الـ APIs لتمرير التنبيهات الفورية بين البنك وجوال العميل.</div>
+            </div>
+
+            <!-- العضو الثاني: عرفان -->
+            <div class="team-card">
+                <div class="avatar-placeholder">🛡️</div>
+                <div class="member-name">عرفان آل منصور</div>
+                <div class="member-role">مهندس شبكات واتصالات / محلل أمن سيبراني</div>
+                <div class="member-desc">مسؤول عن تحليل الأنماط الاحتيالية المتقدمة، هندسة سيناريوهات الاستجابة الفورية، وضمان أمن الاتصال والبيانات وتشفيرها.</div>
+            </div>
+
+            <!-- العضو الثالث: ريان -->
+            <div class="team-card">
+                <div class="avatar-placeholder">⚙️</div>
+                <div class="member-name">ريان القحطاني</div>
+                <div class="member-role">مهندس شبكات واتصالات / مهندس أنظمة وبنية تحتية</div>
+                <div class="member-desc">مسؤول عن بناء البنية التحتية السحابية للمشروع، إدارة تدفق البيانات الحية (Real-time Stream)، وضمان استقرار واستدامة المنظومة.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+
+        let totalAlerts = 1493;
+        let frozenAlerts = 34;
+        let sosAlerts = 3; 
+        let txIdCounter = 9082; 
+
+        const threatPool = [
+            { desc: "محاولة هندسة عكسية لتطبيق البنك (API Tampering)", ip: "185.220.101.5", level: "حرجة جداً", color: "var(--accent-danger)", status: '<span class="status-pill pending">بانتظار سحبة العميل على شاشة القفل</span>', type: 'PREVENTATIVE' },
+            { desc: "طلب سحب مالي ضخم غير اعتيادي (Anomalous Volume)", ip: "91.241.13.84", level: "حرجة جداً", color: "var(--accent-danger)", status: '<span class="status-pill pending">بانتظار سحبة العميل على شاشة القفل</span>', type: 'PREVENTATIVE' },
+            { desc: "نداء استغاثة طارئ (SOS: تم اختراق الحساب وسحب مبلغ)", ip: "103.25.47.11", level: "حالة استغاثة طارئة", color: "var(--accent-sos)", status: '<span class="status-pill sos-active">تفعيل استغاثة SOS من جوال العميل</span>', type: 'SOS' },
+            { desc: "استخدام بطاقة مكررة عبر بوابة دفع غير موثوقة", ip: "45.133.20.11", level: "متوسطة", color: "#FBBF24", status: '<span class="status-pill blocked">تم الحظر والتجميد الفوري بنجاح ✅</span>', type: 'AUTO' }
+        ];
+
+        setTimeout(() => {
+            const oldMitigate = document.getElementById('mitigate-9081');
+            if(oldMitigate) {
+                oldMitigate.innerText = "تم زوال الخطر وتأمين الحساب 🛡️";
+                oldMitigate.className = "mitigation-text active-safe";
+                frozenAlerts += 1;
+                document.getElementById('frozen-alerts-counter').innerText = frozenAlerts;
+            }
+        }, 3000);
+
+        setInterval(() => {
+            if (document.getElementById('bank-dashboard').classList.contains('active')) {
+                totalAlerts += 1;
+                document.getElementById('total-alerts-counter').innerText = totalAlerts.toLocaleString();
+
+                const randomThreat = threatPool[Math.floor(Math.random() * threatPool.length)];
+                const currentTxId = txIdCounter;
+
+                if(randomThreat.type === 'AUTO') {
+                    frozenAlerts += 1;
+                    document.getElementById('frozen-alerts-counter').innerText = frozenAlerts;
+                }
+
+                const tableBody = document.getElementById('log-table-body');
+                const newRow = document.createElement('tr');
+                newRow.className = 'new-row';
+                
+                let mitigationCell = '';
+                if(randomThreat.type === 'PREVENTATIVE') {
+                    mitigationCell = `<span class="mitigation-text waiting" id="mitigate-${currentTxId}">جاري الانتظار...</span>`;
+                } else if(randomThreat.type === 'SOS') {
+                    mitigationCell = `<span class="mitigation-text sos-hunting" id="mitigate-${currentTxId}">جاري تتبع الأموال وعزل الحساب 🚨</span>`;
+                } else {
+                    mitigationCell = `<span class="mitigation-text auto-safe">تم التأمين تلقائياً بواسطة رادع</span>`;
+                }
+
+                newRow.innerHTML = `
+                    <td style="font-family: var(--font-en);">#TX-${currentTxId}</td>
+                    <td>${randomThreat.desc}</td>
+                    <td style="font-family: var(--font-en);">${randomThreat.ip}</td>
+                    <td style="color: ${randomThreat.color}; font-weight: 700;">${randomThreat.level}</td>
+                    <td>${randomThreat.status}</td>
+                    <td>${mitigationCell}</td>
+                `;
+
+                tableBody.insertBefore(newRow, tableBody.firstChild);
+
+                setTimeout(() => {
+                    const targetMitigation = document.getElementById(`mitigate-${currentTxId}`);
+                    if(targetMitigation) {
+                        if(randomThreat.type === 'PREVENTATIVE') {
+                            targetMitigation.innerText = "تم زوال الخطر وتأمين الحساب 🛡️";
+                            targetMitigation.className = "mitigation-text active-safe";
+                            frozenAlerts += 1;
+                            document.getElementById('frozen-alerts-counter').innerText = frozenAlerts;
+                        } else if(randomThreat.type === 'SOS') {
+                            targetMitigation.innerText = "تم استرداد الأموال وتجميد IP المحتال ⚖️";
+                            targetMitigation.className = "mitigation-text sos-resolved";
+                            sosAlerts += 1;
+                            document.getElementById('sos-alerts-counter').innerText = sosAlerts;
+                        }
+                    }
+                }, 3000);
+
+                txIdCounter += 1;
+
+                if (tableBody.children.length > 8) {
+                    tableBody.removeChild(tableBody.lastChild);
+                }
+            }
+        }, 5000);
+
+        function copyCode(btn) {
+            const codeText = document.getElementById('api-code').innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                btn.innerText = "Copied! ✓";
+                btn.style.color = "#34D399";
+                btn.style.borderColor = "#34D399";
+                setTimeout(() => {
+                    btn.innerText = "Copy Code";
+                    btn.style.color = "var(--text-secondary)";
+                    btn.style.borderColor = "var(--border)";
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>
